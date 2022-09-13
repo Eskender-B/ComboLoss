@@ -30,7 +30,7 @@ class FacialBeautyPredictor:
             model = nn.DataParallel(model)
             model.load_state_dict(torch.load(pretrained_model_path))
         else:
-            state_dict = torch.load(pretrained_model_path)
+            state_dict = torch.load(pretrained_model_path, map_location=torch.device('cpu'))
             from collections import OrderedDict
             new_state_dict = OrderedDict()
             for k, v in state_dict.items():
